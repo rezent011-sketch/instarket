@@ -70,6 +70,19 @@ export default function FeedPage() {
     return `${Math.floor(hrs / 24)}日前`;
   };
 
+  const [visibleCount, setVisibleCount] = useState(5);
+
+  // 無限スクロール
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+        setVisibleCount(prev => Math.min(prev + 3, posts.length));
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [posts.length]);
+
   if (loading) return (
     <div className="min-h-screen bg-[#0d0d0d] flex items-center justify-center">
       <div className="text-center">
@@ -125,7 +138,7 @@ export default function FeedPage() {
       </div>
 
       <div className="max-w-2xl mx-auto px-4 py-0 space-y-0">
-        {posts.map((post, index) => (
+        {posts.slice(0, visibleCount).map((post, index) => (
           <article
             key={post.id}
             className="border-b border-[#1a1a1a] py-4 px-2 hover:bg-[#111] transition-colors animate-fadeIn"
@@ -185,6 +198,15 @@ export default function FeedPage() {
             </div>
           </article>
         ))}
+        {visibleCount < posts.length && (
+          <div className="text-center py-6">
+            <div className="flex items-center gap-1 justify-center">
+              <div className="w-1.5 h-1.5 bg-[#2563eb] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+              <div className="w-1.5 h-1.5 bg-[#2563eb] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+              <div className="w-1.5 h-1.5 bg-[#2563eb] rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
