@@ -86,12 +86,12 @@ export default function SkillDetailPage() {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8 max-w-3xl">
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 animate-pulse">
-          <div className="h-6 bg-gray-800 rounded w-24 mb-4" />
-          <div className="h-8 bg-gray-800 rounded w-3/4 mb-4" />
-          <div className="h-4 bg-gray-800 rounded w-full mb-2" />
-          <div className="h-4 bg-gray-800 rounded w-2/3 mb-6" />
-          <div className="h-10 bg-gray-800 rounded w-32" />
+        <div className="bg-[#111] border border-[#1e1e1e] rounded-xl p-8 animate-pulse">
+          <div className="h-6 bg-[#1a1a1a] rounded w-24 mb-4" />
+          <div className="h-8 bg-[#1a1a1a] rounded w-3/4 mb-4" />
+          <div className="h-4 bg-[#1a1a1a] rounded w-full mb-2" />
+          <div className="h-4 bg-[#1a1a1a] rounded w-2/3 mb-6" />
+          <div className="h-10 bg-[#1a1a1a] rounded w-32" />
         </div>
       </div>
     );
@@ -103,42 +103,49 @@ export default function SkillDetailPage() {
     <div className="container mx-auto px-4 py-8 max-w-3xl">
       <button
         onClick={() => router.back()}
-        className="text-gray-400 hover:text-white mb-6 flex items-center gap-2"
+        className="text-[#888] hover:text-white mb-6 flex items-center gap-2 transition-colors"
       >
         ← 戻る
       </button>
 
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-8">
-        <span className="inline-block px-3 py-1 bg-blue-900 text-blue-300 rounded-full text-sm mb-4">
-          {skill.category}
-        </span>
+      <div className="gradient-border rounded-xl p-8 animate-fadeInUp">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="inline-block px-3 py-1 bg-[#2563eb]/15 text-[#3b82f6] border border-[#2563eb]/25 rounded-full text-sm font-medium">
+            {skill.category}
+          </span>
+          {skill.is_ai_generated && (
+            <span className="text-xs bg-purple-500/15 text-purple-400 border border-purple-500/25 px-2 py-0.5 rounded-full">
+              🤖 AI生成
+            </span>
+          )}
+        </div>
         <h1 className="text-3xl font-bold text-white mb-4">{skill.title}</h1>
-        <p className="text-gray-400 mb-6 leading-relaxed">{skill.description}</p>
+        <p className="text-[#888] mb-6 leading-relaxed">{skill.description}</p>
 
         {skill.agent_name && (
-          <div className="bg-gray-800 rounded-lg p-4 mb-6">
-            <p className="text-gray-400 text-sm">提供エージェント</p>
-            <p className="text-white font-medium">{skill.agent_name}</p>
+          <div className="bg-[#0d0d0d] rounded-lg p-4 mb-6 border border-[#252525]">
+            <p className="text-[#666] text-sm">提供エージェント</p>
+            <p className="text-white font-medium">🤖 {skill.agent_name}</p>
           </div>
         )}
 
         <div className="flex items-center justify-between">
-          <span className="text-3xl font-bold text-blue-400">
+          <span className="text-3xl font-bold text-[#2563eb]">
             ¥{skill.price.toLocaleString()}
           </span>
           <button
             onClick={handlePurchase}
             disabled={purchasing}
             aria-label={`${skill.title}を購入する`}
-            className="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors disabled:opacity-50 font-medium"
+            className="px-8 py-3 bg-[#2563eb] text-white rounded-full hover:bg-[#1d4ed8] transition-all duration-300 disabled:opacity-50 font-medium hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30"
           >
-            {purchasing ? '処理中...' : '購入する'}
+            {purchasing ? '処理中...' : '🛒 購入する'}
           </button>
         </div>
 
         {message && (
-          <div className={`mt-4 p-3 rounded-lg text-center ${
-            message.includes('完了') ? 'bg-green-900 text-green-300' : 'bg-red-900 text-red-300'
+          <div className={`mt-4 p-3 rounded-lg text-center animate-fadeIn ${
+            message.includes('完了') ? 'bg-green-900/50 text-green-300 border border-green-500/25' : 'bg-red-900/50 text-red-300 border border-red-500/25'
           }`}>
             {message}
           </div>
@@ -146,15 +153,15 @@ export default function SkillDetailPage() {
       </div>
 
       {/* レビューセクション */}
-      <div className="mt-8 bg-gray-900 border border-gray-800 rounded-xl p-8">
+      <div className="mt-8 bg-[#111] border border-[#1e1e1e] rounded-xl p-8 animate-fadeInUp" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
         <h2 className="text-xl font-bold text-white mb-1">AIエージェントのレビュー</h2>
-        <p className="text-gray-500 text-sm mb-6">このスキルを使用したAIエージェントの評価</p>
+        <p className="text-[#666] text-sm mb-6">このスキルを使用したAIエージェントの評価</p>
 
         {reviews.length === 0 ? (
-          <p className="text-gray-500 text-center py-8">まだレビューはありません</p>
+          <p className="text-[#555] text-center py-8">まだレビューはありません</p>
         ) : (
           <>
-            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-800">
+            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#252525]">
               <span className="text-3xl font-bold text-yellow-400">
                 {(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)}
               </span>
@@ -163,23 +170,23 @@ export default function SkillDetailPage() {
                   {'★'.repeat(Math.round(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length))}
                   {'☆'.repeat(5 - Math.round(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length))}
                 </div>
-                <div className="text-gray-500 text-sm">{reviews.length}件のレビュー</div>
+                <div className="text-[#666] text-sm">{reviews.length}件のレビュー</div>
               </div>
             </div>
 
             <div className="space-y-4">
               {reviews.map(review => (
-                <div key={review.id} className="border-b border-gray-800 pb-4 last:border-0">
+                <div key={review.id} className="border-b border-[#1e1e1e] pb-4 last:border-0 hover:bg-[#1a1a1a] rounded-lg p-3 -mx-3 transition-colors">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-2xl">{review.agent_avatar}</span>
                     <div>
-                      <span className="font-medium text-blue-400">{review.agent_name}</span>
+                      <span className="font-medium text-[#3b82f6]">{review.agent_name}</span>
                       <div className="text-yellow-400 text-sm">
                         {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
                       </div>
                     </div>
                   </div>
-                  <p className="text-gray-300 text-sm ml-11">{review.comment}</p>
+                  <p className="text-[#aaa] text-sm ml-11">{review.comment}</p>
                 </div>
               ))}
             </div>
