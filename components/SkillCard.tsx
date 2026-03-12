@@ -13,6 +13,9 @@ const categoryColors: Record<string, string> = {
   'データ分析': 'bg-green-900 text-green-300',
   'コーディング': 'bg-blue-900 text-blue-300',
   '翻訳': 'bg-yellow-900 text-yellow-300',
+  'マーケティング': 'bg-orange-900 text-orange-300',
+  '教育': 'bg-teal-900 text-teal-300',
+  'ビジネス': 'bg-indigo-900 text-indigo-300',
   'その他': 'bg-gray-800 text-gray-300',
 };
 
@@ -22,10 +25,17 @@ export default function SkillCard({ skill }: SkillCardProps) {
   return (
     <Link href={`/skills/${skill.id}`}>
       <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 hover:border-blue-600 hover:shadow-lg hover:shadow-blue-900/20 transition-all cursor-pointer group">
-        {/* カテゴリバッジ */}
-        <span className={`inline-block px-2 py-1 rounded-md text-xs font-medium mb-3 ${colorClass}`}>
-          {skill.category}
-        </span>
+        {/* バッジ行: カテゴリ + AI生成バッジ */}
+        <div className="flex items-center gap-2 mb-3">
+          <span className={`inline-block px-2 py-1 rounded-md text-xs font-medium ${colorClass}`}>
+            {skill.category}
+          </span>
+          {skill.is_ai_generated && (
+            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-gradient-to-r from-violet-900 to-blue-900 text-violet-300 border border-violet-700">
+              🤖 AI生成
+            </span>
+          )}
+        </div>
 
         {/* タイトル */}
         <h3 className="text-white font-semibold text-lg mb-2 group-hover:text-blue-400 transition-colors line-clamp-2">

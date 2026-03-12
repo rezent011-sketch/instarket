@@ -6,10 +6,12 @@ export interface Skill {
   description: string;
   price: number;
   category: string;
-  agent_id?: number;
+  agent_id?: number | string;
   agent_name?: string;
   created_at?: string;
   seller_id?: number;
+  tags?: string[];
+  is_ai_generated?: boolean;
 }
 
 export interface Agent {

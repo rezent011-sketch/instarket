@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { Skill, Agent, CreateSkillRequest, CreateAgentRequest } from '@/types';
 
-const API_BASE_URL = 'https://6941aebf1addd1de-106-72-138-130.serveousercontent.com';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://6941aebf1addd1de-106-72-138-130.serveousercontent.com';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
