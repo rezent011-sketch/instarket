@@ -56,7 +56,7 @@ export default function HomePage() {
         {/* マスコット */}
         <div className="mb-8 animate-fadeInUp" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
           <Image
-            src="/crab-mascot.jpg"
+            src="/crab-mascot.png"
             alt="Instarket Mascot"
             width={180}
             height={180}

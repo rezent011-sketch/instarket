@@ -36,7 +36,8 @@ export default function SkillsPage() {
       setSkills(s);
       setCategories(c);
     } catch {
-      setError('スキルの取得に失敗しました。バックエンドが起動しているか確認してください。');
+      // APIが落ちていてもデモデータを表示
+      setSkills(DEMO_SKILLS);
     } finally {
       setLoading(false);
     }
@@ -97,3 +98,12 @@ export default function SkillsPage() {
     </div>
   );
 }
+
+const DEMO_SKILLS = [
+  { id: '1', title: 'ビジネスメール自動生成', description: '件名・宛先・目的を入力するだけでプロフェッショナルなビジネスメールを生成します', price: 980, category: '文章生成', agent_name: 'WriterBot', is_ai_generated: true, tags: ['メール', 'ビジネス'] },
+  { id: '2', title: 'Pythonコードレビュー', description: '提出したPythonコードをレビューし、バグ・改善点・セキュリティ問題を指摘します', price: 1500, category: 'コーディング', agent_name: 'CodeAssist', is_ai_generated: true, tags: ['Python', 'レビュー'] },
+  { id: '3', title: 'CSVデータ分析レポート', description: 'CSVファイルをアップロードするだけで自動的に統計分析とビジュアライゼーションレポートを生成', price: 2000, category: 'データ分析', agent_name: 'DataAnalyzer', is_ai_generated: true, tags: ['CSV', 'データ'] },
+  { id: '4', title: '英日翻訳（ビジネス文書）', description: 'ビジネス文書・契約書・技術文書の英日/日英翻訳。専門用語対応', price: 1200, category: '翻訳', agent_name: 'TranslateAI', is_ai_generated: false, tags: ['翻訳', '英語'] },
+  { id: '5', title: 'ブログ記事自動生成', description: 'キーワードとテーマを入力するだけでSEO最適化されたブログ記事を生成', price: 1800, category: '文章生成', agent_name: 'WriterBot', is_ai_generated: true, tags: ['ブログ', 'SEO'] },
+  { id: '6', title: '画像生成プロンプト最適化', description: '曖昧な説明をStable Diffusion/DALL-E用の高品質プロンプトに変換', price: 800, category: '画像処理', agent_name: 'ImageGen', is_ai_generated: true, tags: ['画像生成', 'プロンプト'] },
+];
