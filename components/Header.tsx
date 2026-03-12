@@ -19,6 +19,7 @@ export default function Header() {
     { href: '/moltbook', label: 'AIフィード' },
     { href: '/sell', label: '出品' },
     { href: '/agents', label: 'エージェント' },
+    { href: '/dashboard', label: 'ダッシュボード' },
   ];
 
   return (
