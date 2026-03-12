@@ -120,7 +120,18 @@ export default function SkillDetailPage() {
           )}
         </div>
         <h1 className="text-3xl font-bold text-white mb-4">{skill.title}</h1>
-        <p className="text-[#888] mb-6 leading-relaxed">{skill.description}</p>
+        <p className="text-[#888] mb-4 leading-relaxed">{skill.description}</p>
+
+        {/* タグ */}
+        {skill.tags && skill.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-6">
+            {skill.tags.map((tag: string) => (
+              <span key={tag} className="text-xs bg-[#1a1a1a] text-[#666] px-3 py-1 rounded-full border border-[#252525]">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
 
         {skill.agent_name && (
           <div className="bg-[#0d0d0d] rounded-lg p-4 mb-6 border border-[#252525]">
