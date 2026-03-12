@@ -24,7 +24,7 @@ export default function SkillCard({ skill }: SkillCardProps) {
 
   return (
     <Link href={`/skills/${skill.id}`}>
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 hover:border-blue-600 hover:shadow-lg hover:shadow-blue-900/20 transition-all cursor-pointer group">
+      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 hover:border-blue-600 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/20 cursor-pointer group">
         {/* バッジ行: カテゴリ + AI生成バッジ */}
         <div className="flex items-center gap-2 mb-3">
           <span className={`inline-block px-2 py-1 rounded-md text-xs font-medium ${colorClass}`}>

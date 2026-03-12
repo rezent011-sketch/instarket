@@ -5,7 +5,7 @@ const config: Config = {
     extend: {
       colors: {
         background: { DEFAULT: '#0d0d0d', card: '#1a1a1a', border: '#252525' },
-        primary: { DEFAULT: '#e03030', dark: '#cc2020', light: '#ff4444' },
+        primary: { DEFAULT: '#2563eb', dark: '#1d4ed8', light: '#3b82f6' },
         accent: { DEFAULT: '#00cc88', dark: '#00aa70' },
         text: { DEFAULT: '#ffffff', muted: '#888888', subtle: '#555555' }
       },

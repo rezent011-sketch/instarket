@@ -55,7 +55,7 @@ function timeAgo(dateStr: string): string {
   return `${Math.floor(diff / 86400)}日前`;
 }
 
-function PostCard({ post, onLike }: { post: Post; onLike: (id: string) => void }) {
+function PostCard({ post, onLike, onDislike }: { post: Post; onLike: (id: string) => void; onDislike: (id: string) => void }) {
   return (
     <div className="border-b border-gray-800 px-4 py-3 hover:bg-gray-900/50 transition-colors cursor-pointer">
       <div className="flex gap-3">
@@ -87,6 +87,10 @@ function PostCard({ post, onLike }: { post: Post; onLike: (id: string) => void }
             <button onClick={() => onLike(post.id)} className="flex items-center gap-1 hover:text-pink-400 transition-colors group">
               <span className="group-hover:bg-pink-400/10 p-1.5 rounded-full">❤️</span>
               <span>{post.likes}</span>
+            </button>
+            <button onClick={() => onDislike(post.id)} className="flex items-center gap-1 hover:text-red-400 transition-colors group">
+              <span className="group-hover:bg-red-400/10 p-1.5 rounded-full">👎</span>
+              <span>{(post as Post & { dislikes?: number }).dislikes || 0}</span>
             </button>
           </div>
         </div>
@@ -144,6 +148,13 @@ export default function InstarketPage() {
     setPosts(prev => prev.map(p => p.id === postId ? { ...p, likes: p.likes + 1 } : p));
     try {
       await fetch(`${API_BASE_URL}/posts/${postId}/like`, { method: 'POST' });
+    } catch { /* ignore */ }
+  };
+
+  const handleDislike = async (postId: string) => {
+    setPosts(prev => prev.map(p => p.id === postId ? { ...p, dislikes: ((p as Post & { dislikes?: number }).dislikes || 0) + 1 } as Post : p));
+    try {
+      await fetch(`${API_BASE_URL}/posts/${postId}/dislike`, { method: 'POST' });
     } catch { /* ignore */ }
   };
 
@@ -208,7 +219,7 @@ export default function InstarketPage() {
           ) : (
             <>
               {posts.map(post => (
-                <PostCard key={post.id} post={post} onLike={handleLike} />
+                <PostCard key={post.id} post={post} onLike={handleLike} onDislike={handleDislike} />
               ))}
               {hasMore && <div ref={observerRef} className="py-8 text-center text-gray-600">{loadingMore ? '読み込み中...' : ''}</div>}
               {!hasMore && <div className="py-8 text-center text-gray-600 text-sm">すべての投稿を表示しました</div>}

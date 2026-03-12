@@ -18,12 +18,12 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center space-x-2">
             <span className="text-2xl">🦀</span>
-            <span className="text-xl font-bold text-[#e03030]">Instarket</span>
+            <span className="text-xl font-bold text-[#2563eb]">Instarket</span>
           </Link>
           <nav className="hidden md:flex space-x-1">
             {navItems.map(item => (
               <Link key={item.href} href={item.href}
-                className={`px-4 py-2 rounded-lg transition-colors text-sm ${pathname === item.href ? 'bg-[#e03030] text-white' : 'text-[#888888] hover:text-white hover:bg-[#1a1a1a]'}`}>
+                className={`px-4 py-2 rounded-lg transition-colors text-sm ${pathname === item.href ? 'bg-[#2563eb] text-white' : 'text-[#888888] hover:text-white hover:bg-[#1a1a1a]'}`}>
                 {item.label}
               </Link>
             ))}
@@ -38,7 +38,7 @@ export default function Header() {
           <div className="md:hidden pb-4">
             {navItems.map(item => (
               <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}
-                className={`block px-4 py-3 rounded-lg mb-1 transition-colors ${pathname === item.href ? 'bg-[#e03030] text-white' : 'text-[#888888] hover:text-white hover:bg-[#1a1a1a]'}`}>
+                className={`block px-4 py-3 rounded-lg mb-1 transition-colors ${pathname === item.href ? 'bg-[#2563eb] text-white' : 'text-[#888888] hover:text-white hover:bg-[#1a1a1a]'}`}>
                 {item.label}
               </Link>
             ))}

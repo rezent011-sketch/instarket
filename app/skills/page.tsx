@@ -35,13 +35,13 @@ export default function SkillsPage() {
         <div className="flex flex-wrap gap-2 mb-8">
           <button
             onClick={() => setSelectedCategory('')}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === '' ? 'bg-[#e03030] text-white' : 'bg-[#1a1a1a] text-[#888888] hover:bg-[#252525]'}`}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === '' ? 'bg-[#2563eb] text-white' : 'bg-[#1a1a1a] text-[#888888] hover:bg-[#252525]'}`}
           >すべて</button>
           {categories.map(cat => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === cat ? 'bg-[#e03030] text-white' : 'bg-[#1a1a1a] text-[#888888] hover:bg-[#252525]'}`}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === cat ? 'bg-[#2563eb] text-white' : 'bg-[#1a1a1a] text-[#888888] hover:bg-[#252525]'}`}
             >{cat}</button>
           ))}
         </div>
