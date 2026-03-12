@@ -2,7 +2,7 @@
 import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 import { skillsApi, categoriesApi } from '@/lib/api';
 import SkillCard from '@/components/SkillCard';
-import Footer from '@/components/Footer';
+// Footer is in layout
 import { useScrollReveal } from '@/lib/useScrollReveal';
 
 function SkillSkeleton() {
@@ -181,7 +181,7 @@ export default function SkillsPage() {
           </>
         )}
       </div>
-      <Footer />
+      {/* Footer is in layout */}
     </div>
   );
 }
