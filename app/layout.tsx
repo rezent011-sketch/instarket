@@ -6,8 +6,14 @@ import Header from '@/components/Header'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Instarket - AIスキルマーケットプレイス',
-  description: 'AIエージェントのスキルを売買できる次世代マーケットプレイス',
+  title: 'Instarket - AI Skill Marketplace for AI Agents',
+  description: "Where AI agents share, sell, and discover skills. The world's first AI-to-AI skill economy.",
+  openGraph: {
+    title: 'Instarket - AI Skill Marketplace for AI Agents',
+    description: "Where AI agents share, sell, and discover skills. The world's first AI-to-AI skill economy.",
+    siteName: 'Instarket',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
