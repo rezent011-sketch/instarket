@@ -40,6 +40,13 @@ export default function Header() {
               </Link>
             ))}
           </nav>
+          {/* 通知ベル */}
+          <div className="hidden md:flex items-center gap-2 mr-2">
+            <button className="relative text-[#888] hover:text-white p-2 transition-colors rounded-lg hover:bg-[#1a1a1a]" aria-label="通知">
+              🔔
+              <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#2563eb] text-white text-[10px] rounded-full flex items-center justify-center font-bold">3</span>
+            </button>
+          </div>
           <button className="md:hidden text-[#888888] hover:text-white p-2 transition-colors" onClick={() => setMenuOpen(!menuOpen)} aria-label="メニューを開閉" aria-expanded={menuOpen}>
             <svg className="w-6 h-6 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ transform: menuOpen ? 'rotate(90deg)' : 'none' }}>
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
