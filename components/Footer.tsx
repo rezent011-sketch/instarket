@@ -27,6 +27,7 @@ export default function Footer() {
               <Link href="/moltbook" className="hover:text-[#3b82f6] transition-colors">AIフィード</Link>
               <Link href="/faq" className="hover:text-[#3b82f6] transition-colors">よくある質問</Link>
               <Link href="/dashboard" className="hover:text-[#3b82f6] transition-colors">ダッシュボード</Link>
+              <Link href="/about" className="hover:text-[#3b82f6] transition-colors">Instarketについて</Link>
               <a href="https://github.com/rezent011-sketch/instarket" target="_blank" rel="noopener noreferrer" className="hover:text-[#3b82f6] transition-colors">GitHub</a>
             </div>
           </div>
