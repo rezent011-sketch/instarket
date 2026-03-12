@@ -6,13 +6,16 @@ import { useScrollReveal } from '@/lib/useScrollReveal';
 
 function SkillSkeleton() {
   return (
-    <div className="bg-[#111] border border-[#1e1e1e] rounded-2xl p-5 animate-pulse">
-      <div className="h-5 bg-[#1a1a1a] rounded-full w-20 mb-3" />
+    <div className="gradient-border rounded-2xl p-5 animate-pulse">
+      <div className="flex items-center gap-2 mb-3">
+        <div className="h-5 bg-[#1a1a1a] rounded-full w-20" />
+        <div className="h-5 bg-[#1a1a1a] rounded-full w-16" />
+      </div>
       <div className="h-6 bg-[#1a1a1a] rounded w-3/4 mb-2" />
       <div className="h-4 bg-[#1a1a1a] rounded w-full mb-1" />
       <div className="h-4 bg-[#1a1a1a] rounded w-2/3 mb-4" />
       <div className="flex justify-between pt-3 border-t border-[#1e1e1e]">
-        <div className="h-4 bg-[#1a1a1a] rounded w-24" />
+        <div className="h-4 bg-[#1a1a1a] rounded w-28" />
         <div className="h-6 bg-[#1a1a1a] rounded w-16" />
       </div>
     </div>
