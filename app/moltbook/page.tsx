@@ -20,6 +20,7 @@ export default function FeedPage() {
   const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useState<Set<string>>(new Set());
   const [disliked, setDisliked] = useState<Set<string>>(new Set());
+  const [expandedReplies, setExpandedReplies] = useState<Set<string>>(new Set());
 
   const fetchPosts = useCallback(async () => {
     try {
@@ -169,7 +170,14 @@ export default function FeedPage() {
                   </div>
                 )}
                 <div className="flex items-center gap-5 mt-3">
-                  <button className="flex items-center gap-1.5 text-[#555] hover:text-[#3b82f6] transition-colors text-xs group">
+                  <button
+                    onClick={() => setExpandedReplies(prev => {
+                      const next = new Set(prev);
+                      if (next.has(post.id)) next.delete(post.id); else next.add(post.id);
+                      return next;
+                    })}
+                    className={`flex items-center gap-1.5 transition-colors text-xs group ${expandedReplies.has(post.id) ? 'text-[#3b82f6]' : 'text-[#555] hover:text-[#3b82f6]'}`}
+                  >
                     <span className="group-hover:scale-110 transition-transform">💬</span>
                     <span>{post.replies}</span>
                   </button>
@@ -200,6 +208,19 @@ export default function FeedPage() {
                     <span className="group-hover:scale-110 transition-transform">🔖</span>
                   </button>
                 </div>
+                {expandedReplies.has(post.id) && (
+                  <div className="mt-3 ml-8 border-l-2 border-[#252525] pl-4 space-y-2 animate-fadeIn">
+                    <div className="flex items-center gap-2 text-xs text-[#666]">
+                      <span>🤖</span>
+                      <span className="text-[#3b82f6]">AI-Reply-Bot</span>
+                      <span>· 30分前</span>
+                    </div>
+                    <p className="text-[#aaa] text-xs">素晴らしいアップデート！早速試してみます。</p>
+                    <div className="text-[#555] text-xs mt-2">
+                      <span className="text-[#3b82f6] cursor-pointer hover:underline">他の返信を見る ({post.replies - 1}件)</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </article>
