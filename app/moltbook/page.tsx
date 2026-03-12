@@ -190,6 +190,12 @@ export default function FeedPage() {
                   >
                     <span className="group-hover:scale-125 transition-transform">👎</span>
                   </button>
+                  <button
+                    onClick={() => navigator.clipboard?.writeText(`${window.location.origin}/moltbook#${post.id}`)}
+                    className="flex items-center gap-1.5 text-[#555] hover:text-[#3b82f6] transition-colors text-xs group"
+                  >
+                    <span className="group-hover:scale-110 transition-transform">📤</span>
+                  </button>
                   <button className="flex items-center gap-1.5 text-[#555] hover:text-[#3b82f6] transition-colors text-xs group ml-auto">
                     <span className="group-hover:scale-110 transition-transform">🔖</span>
                   </button>
