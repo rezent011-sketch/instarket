@@ -55,7 +55,7 @@ export default function AgentsPage() {
         <button
           onClick={() => setShowForm(!showForm)}
           aria-label="新しいエージェントを登録"
-          className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
+          className="px-4 py-2 bg-[#2563eb] text-white rounded-full hover:bg-[#1d4ed8] transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30"
         >
           + エージェントを登録
         </button>
@@ -70,44 +70,44 @@ export default function AgentsPage() {
       )}
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-8 space-y-4">
+        <form onSubmit={handleSubmit} className="bg-[#111] border border-[#1e1e1e] rounded-xl p-6 mb-8 space-y-4 animate-fadeInUp">
           <h2 className="text-white font-semibold text-lg">新しいエージェントを登録</h2>
           <div>
-            <label className="block text-gray-300 mb-1 text-sm">エージェント名 *</label>
+            <label className="block text-[#aaa] mb-1 text-sm">エージェント名 *</label>
             <input
               type="text"
               required
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-blue-500 focus:outline-none"
+              className="w-full bg-[#1a1a1a] border border-[#252525] rounded-lg px-3 py-2 text-white focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]/30 focus:outline-none transition-all"
             />
           </div>
           <div>
-            <label className="block text-gray-300 mb-1 text-sm">説明 *</label>
+            <label className="block text-[#aaa] mb-1 text-sm">説明 *</label>
             <textarea
               required
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={3}
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-blue-500 focus:outline-none resize-none"
+              className="w-full bg-[#1a1a1a] border border-[#252525] rounded-lg px-3 py-2 text-white focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]/30 focus:outline-none resize-none transition-all"
             />
           </div>
           <div>
-            <label className="block text-gray-300 mb-1 text-sm">APIエンドポイント *</label>
+            <label className="block text-[#aaa] mb-1 text-sm">APIエンドポイント *</label>
             <input
               type="url"
               required
               value={form.api_endpoint}
               onChange={(e) => setForm({ ...form, api_endpoint: e.target.value })}
               placeholder="https://..."
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white focus:border-blue-500 focus:outline-none"
+              className="w-full bg-[#1a1a1a] border border-[#252525] rounded-lg px-3 py-2 text-white placeholder-[#555] focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]/30 focus:outline-none transition-all"
             />
           </div>
           <button
             type="submit"
             disabled={submitting}
             aria-label="エージェントを登録する"
-            className="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors disabled:opacity-50"
+            className="px-6 py-2 bg-[#2563eb] text-white rounded-full hover:bg-[#1d4ed8] transition-all duration-300 disabled:opacity-50 hover:scale-105"
           >
             {submitting ? '登録中...' : '登録する'}
           </button>
@@ -115,25 +115,30 @@ export default function AgentsPage() {
       )}
 
       {loading ? (
-        <div className="text-center py-16 text-gray-400">読み込み中...</div>
+        <div className="text-center py-16 text-[#888]">読み込み中...</div>
       ) : agents.length === 0 ? (
-        <div className="text-center py-16 text-gray-400">
+        <div className="text-center py-16 text-[#888]">
+          <p className="text-5xl mb-4">🤖</p>
           <p>登録されているエージェントがありません</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {agents.map((agent) => (
-            <div key={agent.id} className="bg-gray-900 border border-gray-800 rounded-xl p-6 hover:border-blue-600 transition-colors">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mb-4">
+          {agents.map((agent, index) => (
+            <div
+              key={agent.id}
+              className="gradient-border rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-blue-500/10 animate-fadeInUp"
+              style={{ animationDelay: `${index * 0.08}s`, animationFillMode: 'both' }}
+            >
+              <div className="w-10 h-10 bg-gradient-to-br from-[#2563eb] to-[#7c3aed] rounded-lg flex items-center justify-center mb-4">
                 <span className="text-white font-bold">{agent.name[0]}</span>
               </div>
               <h3 className="text-white font-semibold text-lg mb-2">{agent.name}</h3>
-              <p className="text-gray-400 text-sm mb-3 line-clamp-3">{agent.description}</p>
+              <p className="text-[#888] text-sm mb-3 line-clamp-3">{agent.description}</p>
               <a
                 href={agent.api_endpoint}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 text-xs hover:text-blue-300 truncate block"
+                className="text-[#3b82f6] text-xs hover:text-[#60a5fa] truncate block transition-colors"
               >
                 {agent.api_endpoint}
               </a>
