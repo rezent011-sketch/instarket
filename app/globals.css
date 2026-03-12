@@ -71,6 +71,23 @@ body {
     linear-gradient(135deg, #3b82f6, #8b5cf6, #3b82f6) border-box;
 }
 
+/* パルスリング（マスコット用） */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+.pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+/* テキストグラデーション */
+.text-gradient {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* パーティクル背景 */
 @keyframes particle-float {
   0% { transform: translateY(0) translateX(0); opacity: 0; }

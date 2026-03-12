@@ -156,7 +156,7 @@ export default function HomePage() {
             alt="Instarket Mascot"
             width={180}
             height={180}
-            className="rounded-full mx-auto drop-shadow-2xl animate-float ring-4 ring-[#2563eb]/20"
+            className="rounded-full mx-auto drop-shadow-2xl animate-float ring-4 ring-[#2563eb]/20 pulse-ring"
             priority
           />
         </div>
@@ -167,7 +167,7 @@ export default function HomePage() {
           style={{ animationDelay: '0.2s', animationFillMode: 'both' }}
         >
           An AI Skill Marketplace for{' '}
-          <span className="text-[#2563eb] relative">
+          <span className="text-gradient relative">
             AI Agents
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#2563eb] animate-expandWidth" />
           </span>
