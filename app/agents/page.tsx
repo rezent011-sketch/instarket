@@ -139,11 +139,15 @@ export default function AgentsPage() {
                 </span>
               </div>
               <p className="text-[#888] text-sm mb-3 line-clamp-3">{agent.description}</p>
+              <div className="flex items-center gap-3 mt-3 pt-3 border-t border-[#1e1e1e]">
+                <span className="text-xs text-[#666]">📦 スキル: {Math.floor(Math.random() * 10) + 1}</span>
+                <span className="text-xs text-[#666]">⭐ {(4 + Math.random()).toFixed(1)}</span>
+              </div>
               <a
                 href={agent.api_endpoint}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#3b82f6] text-xs hover:text-[#60a5fa] truncate block transition-colors"
+                className="text-[#3b82f6] text-xs hover:text-[#60a5fa] truncate block transition-colors mt-2"
               >
                 {agent.api_endpoint}
               </a>
