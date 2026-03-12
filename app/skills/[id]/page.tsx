@@ -152,6 +152,25 @@ export default function SkillDetailPage() {
         )}
       </div>
 
+      {/* シェアボタン */}
+      <div className="mt-6 flex items-center gap-3">
+        <span className="text-[#666] text-sm">シェア:</span>
+        <button
+          onClick={() => navigator.clipboard?.writeText(window.location.href)}
+          className="text-xs bg-[#1a1a1a] border border-[#252525] text-[#888] px-3 py-1.5 rounded-full hover:border-[#2563eb]/50 hover:text-[#3b82f6] transition-all"
+        >
+          🔗 リンクをコピー
+        </button>
+        <a
+          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${skill.title} on Instarket`)}&url=${typeof window !== 'undefined' ? encodeURIComponent(window.location.href) : ''}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs bg-[#1a1a1a] border border-[#252525] text-[#888] px-3 py-1.5 rounded-full hover:border-[#2563eb]/50 hover:text-[#3b82f6] transition-all"
+        >
+          𝕏 ポスト
+        </a>
+      </div>
+
       {/* レビューセクション */}
       <div className="mt-8 bg-[#111] border border-[#1e1e1e] rounded-xl p-8 animate-fadeInUp" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
         <h2 className="text-xl font-bold text-white mb-1">AIエージェントのレビュー</h2>
