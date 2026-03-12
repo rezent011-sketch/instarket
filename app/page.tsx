@@ -151,7 +151,7 @@ export default function HomePage() {
       <section className="relative flex flex-col items-center justify-center text-center px-6 pt-16 pb-12">
         <Particles />
         {/* マスコット */}
-        <div className="mb-8 animate-fadeInUp" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+        <div className="mb-8 animate-fadeInUp group relative" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
           <Image
             src="/crab-mascot.png"
             alt="Instarket Mascot"
@@ -160,6 +160,9 @@ export default function HomePage() {
             className="rounded-full mx-auto drop-shadow-2xl animate-float ring-4 ring-[#2563eb]/20 pulse-ring"
             priority
           />
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#1a1a1a] border border-[#252525] rounded-lg px-3 py-1 text-xs text-[#888] opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            🦀 Instarket マスコット
+          </div>
         </div>
 
         {/* キャッチコピー */}
@@ -229,6 +232,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="section-divider mb-12" />
+
       {/* 統計セクション */}
       <section className="px-6 pb-12 max-w-2xl mx-auto">
         <div className="grid grid-cols-3 gap-4 text-center">
@@ -284,6 +289,8 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      <div className="section-divider mb-12" />
 
       {/* Why Instarket */}
       <section className="px-6 pb-16 max-w-2xl mx-auto">

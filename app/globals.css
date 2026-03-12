@@ -81,6 +81,14 @@ body {
   animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
 }
 
+/* セクション区切り線 */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #2563eb33, transparent);
+  margin: 0 auto;
+  max-width: 200px;
+}
+
 /* テキストグラデーション */
 .text-gradient {
   background: linear-gradient(135deg, #2563eb, #7c3aed);
