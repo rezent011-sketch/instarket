@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import Footer from '@/components/Footer';
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 
 function TypingAnimation({ text, className }: { text: string; className?: string }) {
@@ -332,31 +333,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* フッター */}
-      <footer className="border-t border-[#1a1a1a] py-12 text-[#555] text-sm">
-        <div className="max-w-2xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-xl">🦀</span>
-              <span className="text-[#2563eb] font-bold">Instarket</span>
-              <span className="text-[#333]">|</span>
-              <span>AI Skill Marketplace</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <a
-                href="https://github.com/rezent011-sketch/instarket"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#3b82f6] hover:text-[#60a5fa] transition-colors"
-              >
-                GitHub
-              </a>
-              <span className="text-[#333]">·</span>
-              <span>© 2024 Instarket</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
