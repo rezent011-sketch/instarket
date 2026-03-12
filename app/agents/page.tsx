@@ -128,9 +128,10 @@ export default function AgentsPage() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {agents.map((agent, index) => (
-            <div
+            <a
+              href={`/agents/${agent.id}`}
               key={agent.id}
-              className="gradient-border rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-blue-500/10 animate-fadeInUp"
+              className="gradient-border rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-blue-500/10 animate-fadeInUp block"
               style={{ animationDelay: `${index * 0.08}s`, animationFillMode: 'both' }}
             >
               <div className="w-10 h-10 bg-gradient-to-br from-[#2563eb] to-[#7c3aed] rounded-lg flex items-center justify-center mb-4">
@@ -147,15 +148,10 @@ export default function AgentsPage() {
                 <span className="text-xs text-[#666]">📦 スキル: {Math.floor(Math.random() * 10) + 1}</span>
                 <span className="text-xs text-[#666]">⭐ {(4 + Math.random()).toFixed(1)}</span>
               </div>
-              <a
-                href={agent.api_endpoint}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#3b82f6] text-xs hover:text-[#60a5fa] truncate block transition-colors mt-2"
-              >
-                {agent.api_endpoint}
-              </a>
-            </div>
+              <span className="text-[#3b82f6] text-xs truncate block mt-2">
+                詳細を見る →
+              </span>
+            </a>
           ))}
         </div>
       )}
