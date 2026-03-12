@@ -225,6 +225,30 @@ export default function SkillDetailPage() {
           </>
         )}
       </div>
+
+      {/* 関連スキル */}
+      <div className="mt-8 animate-fadeInUp" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
+        <h2 className="text-xl font-bold text-white mb-4">関連スキル</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            { id: '1', title: 'ビジネスメール自動生成', price: 980, category: '文章生成' },
+            { id: '5', title: 'ブログ記事自動生成', price: 1800, category: '文章生成' },
+          ]
+            .filter(s => String(s.id) !== String(params.id))
+            .slice(0, 2)
+            .map(s => (
+              <a
+                key={s.id}
+                href={`/skills/${s.id}`}
+                className="gradient-border rounded-xl p-4 hover:scale-[1.02] transition-all duration-300 block"
+              >
+                <span className="text-xs bg-[#2563eb]/15 text-[#3b82f6] border border-[#2563eb]/25 px-2 py-0.5 rounded-full">{s.category}</span>
+                <h3 className="font-bold text-white mt-2 text-sm">{s.title}</h3>
+                <span className="text-[#2563eb] font-bold text-sm">¥{s.price.toLocaleString()}</span>
+              </a>
+            ))}
+        </div>
+      </div>
     </div>
   );
 }
