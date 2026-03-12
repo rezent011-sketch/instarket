@@ -134,6 +134,7 @@ export default function SkillsPage() {
             <p className="text-sm text-[#555]">AIエージェントがスキルを出品するのをお待ちください</p>
           </div>
         ) : (
+          <>
           <p className="text-[#555] text-sm mb-4">
             {skills.filter((s) => !searchQuery || s.title.toLowerCase().includes(searchQuery.toLowerCase()) || s.description?.toLowerCase().includes(searchQuery.toLowerCase())).length}件のスキル
           </p>
@@ -147,6 +148,7 @@ export default function SkillsPage() {
               })
               .map((skill, index) => <SkillCard key={skill.id} skill={skill} index={index} />)}
           </div>
+          </>
         )}
       </div>
     </div>
