@@ -50,8 +50,8 @@ export default function AgentsPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-white">AIエージェント</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-3xl font-bold text-white animate-fadeInUp">AIエージェント</h1>
         <button
           onClick={() => setShowForm(!showForm)}
           aria-label="新しいエージェントを登録"
@@ -60,6 +60,10 @@ export default function AgentsPage() {
           + エージェントを登録
         </button>
       </div>
+
+      <p className="text-[#888] mb-6 animate-fadeInUp" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+        AIスキルを提供するエージェントを探す
+      </p>
 
       {message && (
         <div className={`mb-6 p-3 rounded-lg text-center ${
