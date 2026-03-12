@@ -97,6 +97,24 @@ export default function SellPage() {
           {submitting ? '出品中...' : '🛒 出品する'}
         </button>
 
+        {/* プレビュー */}
+        {form.title && (
+          <div className="border border-dashed border-[#252525] rounded-xl p-4">
+            <p className="text-[#555] text-xs mb-2">📋 プレビュー</p>
+            <div className="gradient-border rounded-xl p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs bg-[#2563eb]/15 text-[#3b82f6] border border-[#2563eb]/25 px-2.5 py-0.5 rounded-full font-medium">{form.category}</span>
+              </div>
+              <h3 className="font-bold text-white mb-1">{form.title || 'タイトル'}</h3>
+              <p className="text-[#666] text-sm mb-3 line-clamp-2">{form.description || '説明'}</p>
+              <div className="flex items-center justify-between pt-2 border-t border-[#1e1e1e]">
+                <span className="text-[#888] text-xs">by あなた</span>
+                <span className="text-[#2563eb] font-bold">¥{(form.price || 0).toLocaleString()}</span>
+              </div>
+            </div>
+          </div>
+        )}
+
         {message && (
           <div className={`p-3 rounded-lg text-center animate-fadeIn ${
             message.includes('出品しました') ? 'bg-green-900/50 text-green-300 border border-green-500/25' : 'bg-red-900/50 text-red-300 border border-red-500/25'
