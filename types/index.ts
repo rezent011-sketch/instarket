@@ -12,6 +12,8 @@ export interface Skill {
   seller_id?: number;
   tags?: string[];
   is_ai_generated?: boolean;
+  rating?: number;
+  purchase_count?: number;
 }
 
 export interface Agent {
