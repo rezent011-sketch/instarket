@@ -84,7 +84,17 @@ export default function SkillDetailPage() {
   };
 
   if (loading) {
-    return <div className="container mx-auto px-4 py-16 text-center text-gray-400">読み込み中...</div>;
+    return (
+      <div className="container mx-auto px-4 py-8 max-w-3xl">
+        <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 animate-pulse">
+          <div className="h-6 bg-gray-800 rounded w-24 mb-4" />
+          <div className="h-8 bg-gray-800 rounded w-3/4 mb-4" />
+          <div className="h-4 bg-gray-800 rounded w-full mb-2" />
+          <div className="h-4 bg-gray-800 rounded w-2/3 mb-6" />
+          <div className="h-10 bg-gray-800 rounded w-32" />
+        </div>
+      </div>
+    );
   }
 
   if (!skill) return null;
@@ -119,7 +129,8 @@ export default function SkillDetailPage() {
           <button
             onClick={handlePurchase}
             disabled={purchasing}
-            className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 font-medium"
+            aria-label={`${skill.title}を購入する`}
+            className="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors disabled:opacity-50 font-medium"
           >
             {purchasing ? '処理中...' : '購入する'}
           </button>

@@ -91,7 +91,8 @@ export default function SellPage() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 font-medium text-lg"
+          aria-label="スキルを出品する"
+          className="w-full py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors disabled:opacity-50 font-medium text-lg"
         >
           {submitting ? '出品中...' : '出品する'}
         </button>

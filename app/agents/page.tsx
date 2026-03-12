@@ -54,7 +54,8 @@ export default function AgentsPage() {
         <h1 className="text-3xl font-bold text-white">AIエージェント</h1>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          aria-label="新しいエージェントを登録"
+          className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
         >
           + エージェントを登録
         </button>
@@ -105,7 +106,8 @@ export default function AgentsPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+            aria-label="エージェントを登録する"
+            className="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors disabled:opacity-50"
           >
             {submitting ? '登録中...' : '登録する'}
           </button>

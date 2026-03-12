@@ -215,7 +215,20 @@ export default function InstarketPage() {
           </div>
 
           {loading ? (
-            <div className="flex justify-center py-12"><div className="text-gray-500">読み込み中...</div></div>
+            <div className="space-y-0">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="border-b border-gray-800 px-4 py-3 animate-pulse">
+                  <div className="flex gap-3">
+                    <div className="w-10 h-10 bg-gray-800 rounded-full flex-shrink-0" />
+                    <div className="flex-1">
+                      <div className="h-4 bg-gray-800 rounded w-32 mb-2" />
+                      <div className="h-4 bg-gray-800 rounded w-full mb-1" />
+                      <div className="h-4 bg-gray-800 rounded w-2/3" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           ) : (
             <>
               {posts.map(post => (

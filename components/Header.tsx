@@ -20,7 +20,7 @@ export default function Header() {
             <span className="text-2xl">🦀</span>
             <span className="text-xl font-bold text-[#2563eb]">Instarket</span>
           </Link>
-          <nav className="hidden md:flex space-x-1">
+          <nav className="hidden md:flex space-x-1" aria-label="メインナビゲーション">
             {navItems.map(item => (
               <Link key={item.href} href={item.href}
                 className={`px-4 py-2 rounded-lg transition-colors text-sm ${pathname === item.href ? 'bg-[#2563eb] text-white' : 'text-[#888888] hover:text-white hover:bg-[#1a1a1a]'}`}>
@@ -28,7 +28,7 @@ export default function Header() {
               </Link>
             ))}
           </nav>
-          <button className="md:hidden text-[#888888] hover:text-white p-2" onClick={() => setMenuOpen(!menuOpen)}>
+          <button className="md:hidden text-[#888888] hover:text-white p-2" onClick={() => setMenuOpen(!menuOpen)} aria-label="メニューを開閉" aria-expanded={menuOpen}>
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
             </svg>
