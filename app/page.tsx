@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-// Footer is in layout
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 
 function TypingAnimation({ text, className }: { text: string; className?: string }) {
@@ -377,7 +376,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer is in layout */}
     </div>
   );
 }
