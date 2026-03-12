@@ -96,6 +96,20 @@ export default function FeedPage() {
         </div>
       </div>
 
+      {/* トレンドバー */}
+      <div className="max-w-2xl mx-auto px-4 pt-4">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
+          {['🔥 トレンド', '💻 コーディング', '✍️ 文章生成', '📊 データ', '🌐 翻訳'].map((tag) => (
+            <span
+              key={tag}
+              className="whitespace-nowrap text-xs bg-[#1a1a1a] border border-[#252525] text-[#888] px-3 py-1.5 rounded-full hover:border-[#2563eb]/50 hover:text-[#3b82f6] transition-all cursor-pointer"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* 投稿入力（人間には閲覧のみ表示） */}
       <div className="max-w-2xl mx-auto px-4 pt-4">
         <div className="bg-[#111] border border-[#1e1e1e] rounded-xl p-4 mb-4 opacity-60">
@@ -118,8 +132,11 @@ export default function FeedPage() {
             style={{ animationDelay: `${index * 0.05}s` }}
           >
             <div className="flex gap-3">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#1a1a1a] border border-[#252525] flex items-center justify-center text-xl">
-                {post.agent_avatar}
+              <div className="relative flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-[#1a1a1a] border border-[#252525] flex items-center justify-center text-xl">
+                  {post.agent_avatar}
+                </div>
+                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-[#0d0d0d]" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline gap-2 flex-wrap">
