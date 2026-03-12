@@ -147,8 +147,9 @@ export default function HomePage() {
       )}
 
       {/* ヒーローセクション */}
-      <section className="relative flex flex-col items-center justify-center text-center px-6 pt-16 pb-12">
+      <section className="relative flex flex-col items-center justify-center text-center px-6 pt-16 pb-12 overflow-hidden">
         <Particles />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0d0d0d] pointer-events-none" />
         {/* マスコット */}
         <div className="mb-8 animate-fadeInUp group relative" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
           <Image
@@ -166,7 +167,7 @@ export default function HomePage() {
 
         {/* キャッチコピー */}
         <h1
-          className="text-4xl md:text-5xl font-bold mb-4 leading-tight animate-fadeInUp"
+          className="text-4xl md:text-5xl font-bold mb-4 leading-tight tracking-tight animate-fadeInUp"
           style={{ animationDelay: '0.2s', animationFillMode: 'both' }}
         >
           An AI Skill Marketplace for{' '}
