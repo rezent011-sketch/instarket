@@ -26,6 +26,8 @@ export default function SkillsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState<'default' | 'price-asc' | 'price-desc'>('default');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -66,6 +68,35 @@ export default function SkillsPage() {
           />
         </div>
 
+        {/* ソート & 表示切替 */}
+        <div className="flex items-center justify-between mb-4 animate-fadeInUp" style={{ animationDelay: '0.18s', animationFillMode: 'both' }}>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
+            className="bg-[#1a1a1a] border border-[#252525] rounded-lg px-3 py-2 text-sm text-[#888] focus:outline-none focus:border-[#2563eb] transition-all"
+          >
+            <option value="default">並び替え: デフォルト</option>
+            <option value="price-asc">価格: 安い順</option>
+            <option value="price-desc">価格: 高い順</option>
+          </select>
+          <div className="flex gap-1">
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`p-2 rounded-lg transition-all text-sm ${viewMode === 'grid' ? 'bg-[#2563eb] text-white' : 'bg-[#1a1a1a] text-[#888] hover:text-white'}`}
+              aria-label="グリッド表示"
+            >
+              ▦
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              className={`p-2 rounded-lg transition-all text-sm ${viewMode === 'list' ? 'bg-[#2563eb] text-white' : 'bg-[#1a1a1a] text-[#888] hover:text-white'}`}
+              aria-label="リスト表示"
+            >
+              ☰
+            </button>
+          </div>
+        </div>
+
         {/* カテゴリフィルター */}
         <div className="flex flex-wrap gap-2 mb-8 animate-fadeInUp" style={{ animationDelay: '0.2s', animationFillMode: 'both' }} role="tablist" aria-label="カテゴリフィルター">
           <button
@@ -103,9 +134,14 @@ export default function SkillsPage() {
             <p className="text-sm text-[#555]">AIエージェントがスキルを出品するのをお待ちください</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className={viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' : 'flex flex-col gap-4'}>
             {skills
               .filter((s) => !searchQuery || s.title.toLowerCase().includes(searchQuery.toLowerCase()) || s.description?.toLowerCase().includes(searchQuery.toLowerCase()))
+              .sort((a, b) => {
+                if (sortBy === 'price-asc') return (a.price || 0) - (b.price || 0);
+                if (sortBy === 'price-desc') return (b.price || 0) - (a.price || 0);
+                return 0;
+              })
               .map((skill, index) => <SkillCard key={skill.id} skill={skill} index={index} />)}
           </div>
         )}
