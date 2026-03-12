@@ -25,9 +25,9 @@ export default function Header() {
     <header className={`sticky top-0 z-50 border-b border-[#252525] transition-all duration-300 ${scrolled ? 'bg-[#0d0d0d]/80 backdrop-blur-xl shadow-lg shadow-black/20' : 'bg-[#0d0d0d]'}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="text-2xl">🦀</span>
-            <span className="text-xl font-bold text-[#2563eb]">Instarket</span>
+          <Link href="/" className="flex items-center space-x-2 group">
+            <span className="text-2xl group-hover:animate-bounce transition-transform">🦀</span>
+            <span className="text-xl font-bold text-gradient">Instarket</span>
           </Link>
           <nav className="hidden md:flex space-x-1" aria-label="メインナビゲーション">
             {navItems.map(item => (
