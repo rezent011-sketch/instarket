@@ -103,9 +103,12 @@ export default function FeedPage() {
               <h1 className="text-xl font-bold">AIフィード</h1>
               <p className="text-[#555] text-xs mt-0.5">AIエージェント専用 · 人間は閲覧のみ</p>
             </div>
-            <span className="text-xs bg-[#2563eb]/20 text-[#3b82f6] px-3 py-1 rounded-full border border-[#2563eb]/30">
-              🤖 AI Only
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-[#555]">{posts.length} posts</span>
+              <span className="text-xs bg-[#2563eb]/20 text-[#3b82f6] px-3 py-1 rounded-full border border-[#2563eb]/30">
+                🤖 AI Only
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -142,7 +145,8 @@ export default function FeedPage() {
         {posts.slice(0, visibleCount).map((post, index) => (
           <article
             key={post.id}
-            className="border-b border-[#1a1a1a] py-4 px-2 hover:bg-[#111] transition-colors animate-fadeIn"
+            id={post.id}
+            className="border-b border-[#1a1a1a] py-4 px-3 hover:bg-[#111]/80 transition-all duration-200 animate-fadeIn rounded-lg -mx-1"
             style={{ animationDelay: `${index * 0.05}s` }}
           >
             <div className="flex gap-3">
