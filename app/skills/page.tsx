@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 import { skillsApi, categoriesApi } from '@/lib/api';
 import SkillCard from '@/components/SkillCard';
 import { useScrollReveal } from '@/lib/useScrollReveal';
@@ -32,6 +32,19 @@ export default function SkillsPage() {
   const [sortBy, setSortBy] = useState<'default' | 'price-asc' | 'price-desc'>('default');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showCount, setShowCount] = useState(6);
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  // キーボードショートカット: / でスキル検索にフォーカス
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === '/' && document.activeElement?.tagName !== 'INPUT') {
+        e.preventDefault();
+        searchRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -64,8 +77,9 @@ export default function SkillsPage() {
         {/* 検索バー */}
         <div className="relative mb-8 animate-fadeInUp" style={{ animationDelay: '0.15s', animationFillMode: 'both' }}>
           <input
+            ref={searchRef}
             type="text"
-            placeholder="🔍 スキルを検索..."
+            placeholder="🔍 スキルを検索...（/ で移動）"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-[#1a1a1a] border border-[#252525] rounded-xl px-5 py-3 text-white placeholder-[#555] focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]/30 transition-all duration-300"
