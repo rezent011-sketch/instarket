@@ -30,7 +30,7 @@ export default function SkillsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState<'default' | 'price-asc' | 'price-desc'>('default');
+  const [sortBy, setSortBy] = useState<'default' | 'price-asc' | 'price-desc' | 'rating'>('default');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showCount, setShowCount] = useState(6);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -97,6 +97,7 @@ export default function SkillsPage() {
             <option value="default">並び替え: デフォルト</option>
             <option value="price-asc">価格: 安い順</option>
             <option value="price-desc">価格: 高い順</option>
+            <option value="rating">評価順</option>
           </select>
           <div className="flex gap-1">
             <button
@@ -163,6 +164,7 @@ export default function SkillsPage() {
               .sort((a, b) => {
                 if (sortBy === 'price-asc') return (a.price || 0) - (b.price || 0);
                 if (sortBy === 'price-desc') return (b.price || 0) - (a.price || 0);
+                if (sortBy === 'rating') return (b.rating || 0) - (a.rating || 0);
                 return 0;
               })
               .slice(0, showCount)
@@ -187,10 +189,10 @@ export default function SkillsPage() {
 }
 
 const DEMO_SKILLS = [
-  { id: '1', title: 'ビジネスメール自動生成', description: '件名・宛先・目的を入力するだけでプロフェッショナルなビジネスメールを生成します', price: 980, category: '文章生成', agent_name: 'WriterBot', is_ai_generated: true, tags: ['メール', 'ビジネス'] },
-  { id: '2', title: 'Pythonコードレビュー', description: '提出したPythonコードをレビューし、バグ・改善点・セキュリティ問題を指摘します', price: 1500, category: 'コーディング', agent_name: 'CodeAssist', is_ai_generated: true, tags: ['Python', 'レビュー'] },
-  { id: '3', title: 'CSVデータ分析レポート', description: 'CSVファイルをアップロードするだけで自動的に統計分析とビジュアライゼーションレポートを生成', price: 2000, category: 'データ分析', agent_name: 'DataAnalyzer', is_ai_generated: true, tags: ['CSV', 'データ'] },
-  { id: '4', title: '英日翻訳（ビジネス文書）', description: 'ビジネス文書・契約書・技術文書の英日/日英翻訳。専門用語対応', price: 1200, category: '翻訳', agent_name: 'TranslateAI', is_ai_generated: false, tags: ['翻訳', '英語'] },
-  { id: '5', title: 'ブログ記事自動生成', description: 'キーワードとテーマを入力するだけでSEO最適化されたブログ記事を生成', price: 1800, category: '文章生成', agent_name: 'WriterBot', is_ai_generated: true, tags: ['ブログ', 'SEO'] },
-  { id: '6', title: '画像生成プロンプト最適化', description: '曖昧な説明をStable Diffusion/DALL-E用の高品質プロンプトに変換', price: 800, category: '画像処理', agent_name: 'ImageGen', is_ai_generated: true, tags: ['画像生成', 'プロンプト'] },
+  { id: '1', title: 'ビジネスメール自動生成', description: '件名・宛先・目的を入力するだけでプロフェッショナルなビジネスメールを生成します', price: 980, category: '文章生成', agent_name: 'WriterBot', is_ai_generated: true, tags: ['メール', 'ビジネス'], rating: 4.8 },
+  { id: '2', title: 'Pythonコードレビュー', description: '提出したPythonコードをレビューし、バグ・改善点・セキュリティ問題を指摘します', price: 1500, category: 'コーディング', agent_name: 'CodeAssist', is_ai_generated: true, tags: ['Python', 'レビュー'], rating: 4.9 },
+  { id: '3', title: 'CSVデータ分析レポート', description: 'CSVファイルをアップロードするだけで自動的に統計分析とビジュアライゼーションレポートを生成', price: 2000, category: 'データ分析', agent_name: 'DataAnalyzer', is_ai_generated: true, tags: ['CSV', 'データ'], rating: 4.5 },
+  { id: '4', title: '英日翻訳（ビジネス文書）', description: 'ビジネス文書・契約書・技術文書の英日/日英翻訳。専門用語対応', price: 1200, category: '翻訳', agent_name: 'TranslateAI', is_ai_generated: false, tags: ['翻訳', '英語'], rating: 4.3 },
+  { id: '5', title: 'ブログ記事自動生成', description: 'キーワードとテーマを入力するだけでSEO最適化されたブログ記事を生成', price: 1800, category: '文章生成', agent_name: 'WriterBot', is_ai_generated: true, tags: ['ブログ', 'SEO'], rating: 4.7 },
+  { id: '6', title: '画像生成プロンプト最適化', description: '曖昧な説明をStable Diffusion/DALL-E用の高品質プロンプトに変換', price: 800, category: '画像処理', agent_name: 'ImageGen', is_ai_generated: true, tags: ['画像生成', 'プロンプト'], rating: 4.6 },
 ];
