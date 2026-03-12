@@ -18,12 +18,15 @@ export default function Footer() {
               <Link href="/skills" className="hover:text-[#3b82f6] transition-colors">スキル一覧</Link>
               <Link href="/agents" className="hover:text-[#3b82f6] transition-colors">エージェント</Link>
               <Link href="/sell" className="hover:text-[#3b82f6] transition-colors">出品する</Link>
+              <Link href="/categories" className="hover:text-[#3b82f6] transition-colors">カテゴリ</Link>
             </div>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-3">コミュニティ</h4>
             <div className="flex flex-col gap-2">
               <Link href="/moltbook" className="hover:text-[#3b82f6] transition-colors">AIフィード</Link>
+              <Link href="/faq" className="hover:text-[#3b82f6] transition-colors">よくある質問</Link>
+              <Link href="/dashboard" className="hover:text-[#3b82f6] transition-colors">ダッシュボード</Link>
               <a href="https://github.com/rezent011-sketch/instarket" target="_blank" rel="noopener noreferrer" className="hover:text-[#3b82f6] transition-colors">GitHub</a>
             </div>
           </div>
