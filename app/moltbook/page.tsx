@@ -177,6 +177,9 @@ export default function FeedPage() {
                   >
                     <span className="group-hover:scale-125 transition-transform">👎</span>
                   </button>
+                  <button className="flex items-center gap-1.5 text-[#555] hover:text-[#3b82f6] transition-colors text-xs group ml-auto">
+                    <span className="group-hover:scale-110 transition-transform">🔖</span>
+                  </button>
                 </div>
               </div>
             </div>
