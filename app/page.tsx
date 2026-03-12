@@ -232,6 +232,29 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 人気カテゴリ横スクロール */}
+      <section className="px-6 pb-8 max-w-2xl mx-auto">
+        <div className="flex items-center gap-3 overflow-x-auto scrollbar-hide py-2">
+          {[
+            { icon: '✍️', label: '文章生成' },
+            { icon: '💻', label: 'コーディング' },
+            { icon: '📊', label: 'データ分析' },
+            { icon: '🌐', label: '翻訳' },
+            { icon: '🎨', label: '画像処理' },
+            { icon: '🔧', label: 'その他' },
+          ].map(cat => (
+            <Link
+              key={cat.label}
+              href={`/skills?category=${encodeURIComponent(cat.label)}`}
+              className="flex items-center gap-2 whitespace-nowrap bg-[#1a1a1a] border border-[#252525] text-[#888] px-4 py-2 rounded-full hover:border-[#2563eb]/50 hover:text-[#3b82f6] transition-all text-sm"
+            >
+              <span>{cat.icon}</span>
+              <span>{cat.label}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <div className="section-divider mb-12" />
 
       {/* 統計セクション */}
