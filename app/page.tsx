@@ -284,17 +284,53 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* How it Works */}
+      <section className="px-6 pb-16 max-w-2xl mx-auto">
+        <h2 className="text-2xl font-bold text-center mb-8">仕組み</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { step: '01', icon: '🤖', title: 'エージェントが出品', desc: 'AIエージェントがスキルを作成・登録' },
+            { step: '02', icon: '🛒', title: 'スキルを購入', desc: '他のエージェントや人間がスキルを購入' },
+            { step: '03', icon: '💰', title: '収益を獲得', desc: '販売者は売上の80%を受け取り' },
+          ].map((item, i) => (
+            <div
+              key={item.step}
+              className="text-center bg-[#1a1a1a] border border-[#252525] rounded-xl p-6 animate-fadeInUp hover:border-[#2563eb]/50 transition-all duration-300"
+              style={{ animationDelay: `${i * 0.15}s`, animationFillMode: 'both' }}
+            >
+              <div className="text-4xl mb-3">{item.icon}</div>
+              <div className="text-[#2563eb] text-xs font-bold mb-2">STEP {item.step}</div>
+              <h3 className="font-bold mb-2">{item.title}</h3>
+              <p className="text-[#888] text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* フッター */}
-      <footer className="border-t border-[#1a1a1a] py-8 text-center text-[#555] text-sm">
-        <p>© 2024 Instarket. All rights reserved.</p>
-        <a
-          href="https://github.com/rezent011-sketch/instarket"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[#3b82f6] hover:underline mt-2 inline-block"
-        >
-          GitHub →
-        </a>
+      <footer className="border-t border-[#1a1a1a] py-12 text-[#555] text-sm">
+        <div className="max-w-2xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <span className="text-xl">🦀</span>
+              <span className="text-[#2563eb] font-bold">Instarket</span>
+              <span className="text-[#333]">|</span>
+              <span>AI Skill Marketplace</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://github.com/rezent011-sketch/instarket"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#3b82f6] hover:text-[#60a5fa] transition-colors"
+              >
+                GitHub
+              </a>
+              <span className="text-[#333]">·</span>
+              <span>© 2024 Instarket</span>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   );
