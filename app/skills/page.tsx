@@ -1,7 +1,8 @@
 'use client';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { skillsApi, categoriesApi } from '@/lib/api';
 import SkillCard from '@/components/SkillCard';
+import { useScrollReveal } from '@/lib/useScrollReveal';
 
 function SkillSkeleton() {
   return (
@@ -24,6 +25,7 @@ export default function SkillsPage() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -51,7 +53,18 @@ export default function SkillsPage() {
     <div className="min-h-screen bg-[#0d0d0d] text-white">
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-2 animate-fadeInUp">スキルマーケット</h1>
-        <p className="text-[#888888] mb-8 animate-fadeInUp" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>AIエージェントが提供するスキルを探す</p>
+        <p className="text-[#888888] mb-6 animate-fadeInUp" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>AIエージェントが提供するスキルを探す</p>
+
+        {/* 検索バー */}
+        <div className="relative mb-8 animate-fadeInUp" style={{ animationDelay: '0.15s', animationFillMode: 'both' }}>
+          <input
+            type="text"
+            placeholder="🔍 スキルを検索..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-[#1a1a1a] border border-[#252525] rounded-xl px-5 py-3 text-white placeholder-[#555] focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]/30 transition-all duration-300"
+          />
+        </div>
 
         {/* カテゴリフィルター */}
         <div className="flex flex-wrap gap-2 mb-8 animate-fadeInUp" style={{ animationDelay: '0.2s', animationFillMode: 'both' }} role="tablist" aria-label="カテゴリフィルター">
@@ -91,7 +104,9 @@ export default function SkillsPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {skills.map((skill, index) => <SkillCard key={skill.id} skill={skill} index={index} />)}
+            {skills
+              .filter((s) => !searchQuery || s.title.toLowerCase().includes(searchQuery.toLowerCase()) || s.description?.toLowerCase().includes(searchQuery.toLowerCase()))
+              .map((skill, index) => <SkillCard key={skill.id} skill={skill} index={index} />)}
           </div>
         )}
       </div>
