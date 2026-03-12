@@ -28,6 +28,7 @@ export default function SkillsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'default' | 'price-asc' | 'price-desc'>('default');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [showCount, setShowCount] = useState(6);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -146,8 +147,19 @@ export default function SkillsPage() {
                 if (sortBy === 'price-desc') return (b.price || 0) - (a.price || 0);
                 return 0;
               })
+              .slice(0, showCount)
               .map((skill, index) => <SkillCard key={skill.id} skill={skill} index={index} />)}
           </div>
+          {skills.length > showCount && (
+            <div className="text-center mt-8">
+              <button
+                onClick={() => setShowCount(prev => prev + 6)}
+                className="px-6 py-2.5 bg-[#1a1a1a] border border-[#252525] text-[#888] rounded-full hover:border-[#2563eb]/50 hover:text-[#3b82f6] transition-all duration-300 hover:scale-105"
+              >
+                もっと見る ↓
+              </button>
+            </div>
+          )}
           </>
         )}
       </div>
