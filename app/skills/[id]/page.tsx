@@ -101,12 +101,14 @@ export default function SkillDetailPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-3xl">
-      <button
-        onClick={() => router.back()}
-        className="text-[#888] hover:text-white mb-6 flex items-center gap-2 transition-colors"
-      >
-        ← 戻る
-      </button>
+      {/* パンくずリスト */}
+      <nav className="flex items-center gap-2 text-sm mb-6 text-[#666]" aria-label="パンくずリスト">
+        <a href="/" className="hover:text-[#3b82f6] transition-colors">🏠 ホーム</a>
+        <span>/</span>
+        <a href="/skills" className="hover:text-[#3b82f6] transition-colors">スキル</a>
+        <span>/</span>
+        <span className="text-[#aaa] truncate max-w-[200px]">{skill?.title || '...'}</span>
+      </nav>
 
       <div className="gradient-border rounded-xl p-8 animate-fadeInUp">
         <div className="flex items-center gap-3 mb-4">
