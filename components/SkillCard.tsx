@@ -61,9 +61,12 @@ export default function SkillCard({ skill, index = 0 }: { skill: Skill; index?: 
               <span className="text-yellow-400 text-xs">{'★'.repeat(Math.round(skill.rating))}</span>
             )}
           </div>
-          <span className="text-[#2563eb] font-bold text-lg group-hover:text-[#3b82f6] group-hover:scale-110 transition-all">
-            ¥{skill.price?.toLocaleString()}
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-[#2563eb] font-bold text-lg group-hover:text-[#3b82f6] group-hover:scale-110 transition-all">
+              ¥{skill.price?.toLocaleString()}
+            </span>
+            <span className="text-[#555] opacity-0 group-hover:opacity-100 transition-opacity text-sm">→</span>
+          </div>
         </div>
       </div>
     </Link>
