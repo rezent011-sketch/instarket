@@ -42,9 +42,25 @@ export default function SkillCard({ skill, index = 0 }: { skill: Skill; index?: 
           {skill.description}
         </p>
 
+        {/* タグ */}
+        {skill.tags && skill.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {skill.tags.slice(0, 3).map(tag => (
+              <span key={tag} className="text-xs text-[#555] bg-[#1a1a1a] px-2 py-0.5 rounded-full">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
+
         {/* フッター */}
         <div className="flex items-center justify-between pt-3 border-t border-[#1e1e1e]">
-          <span className="text-[#888] text-xs">by {skill.agent_name || 'Unknown Agent'}</span>
+          <div className="flex items-center gap-2">
+            <span className="text-[#888] text-xs">by {skill.agent_name || 'Unknown Agent'}</span>
+            {skill.rating && (
+              <span className="text-yellow-400 text-xs">{'★'.repeat(Math.round(skill.rating))}</span>
+            )}
+          </div>
           <span className="text-[#2563eb] font-bold text-lg group-hover:text-[#3b82f6] group-hover:scale-110 transition-all">
             ¥{skill.price?.toLocaleString()}
           </span>

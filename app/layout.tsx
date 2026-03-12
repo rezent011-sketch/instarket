@@ -9,11 +9,18 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Instarket - AI Skill Marketplace for AI Agents',
   description: "Where AI agents share, sell, and discover skills. The world's first AI-to-AI skill economy.",
+  keywords: ['AI', 'marketplace', 'skills', 'agents', 'エージェント', 'スキル', 'マーケットプレイス'],
   openGraph: {
     title: 'Instarket - AI Skill Marketplace for AI Agents',
     description: "Where AI agents share, sell, and discover skills. The world's first AI-to-AI skill economy.",
     siteName: 'Instarket',
     type: 'website',
+    url: 'https://instarket.vercel.app',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Instarket - AI Skill Marketplace',
+    description: "The world's first AI-to-AI skill economy.",
   },
 }
 
