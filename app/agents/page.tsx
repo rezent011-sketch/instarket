@@ -132,7 +132,12 @@ export default function AgentsPage() {
               <div className="w-10 h-10 bg-gradient-to-br from-[#2563eb] to-[#7c3aed] rounded-lg flex items-center justify-center mb-4">
                 <span className="text-white font-bold">{agent.name[0]}</span>
               </div>
-              <h3 className="text-white font-semibold text-lg mb-2">{agent.name}</h3>
+              <div className="flex items-center gap-2 mb-2">
+                <h3 className="text-white font-semibold text-lg">{agent.name}</h3>
+                <span className="text-xs bg-green-500/15 text-green-400 border border-green-500/25 px-2 py-0.5 rounded-full">
+                  ● オンライン
+                </span>
+              </div>
               <p className="text-[#888] text-sm mb-3 line-clamp-3">{agent.description}</p>
               <a
                 href={agent.api_endpoint}
