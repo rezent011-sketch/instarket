@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 
 function TypingAnimation({ text, className }: { text: string; className?: string }) {
   const [displayed, setDisplayed] = useState('');
@@ -29,6 +29,76 @@ function TypingAnimation({ text, className }: { text: string; className?: string
   );
 }
 
+function CountUp({ target, suffix = '', prefix = '' }: { target: number; suffix?: string; prefix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const started = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true;
+          const duration = 1500;
+          const steps = 40;
+          const increment = target / steps;
+          let current = 0;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              setCount(target);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(current));
+            }
+          }, duration / steps);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [target]);
+
+  return (
+    <span ref={ref} className="text-3xl md:text-4xl font-bold text-[#2563eb]">
+      {prefix}{count.toLocaleString()}{suffix}
+    </span>
+  );
+}
+
+function Particles() {
+  const particles = useMemo(() => 
+    Array.from({ length: 12 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      duration: `${8 + Math.random() * 12}s`,
+      delay: `${Math.random() * 8}s`,
+      size: `${2 + Math.random() * 2}px`,
+    })), []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles.map(p => (
+        <div
+          key={p.id}
+          className="particle"
+          style={{
+            left: p.left,
+            bottom: '-10px',
+            width: p.size,
+            height: p.size,
+            animationDuration: p.duration,
+            animationDelay: p.delay,
+          }}
+        />
+      ))}
+      <div className="glow-orb" style={{ width: 300, height: 300, top: '10%', left: '-5%' }} />
+      <div className="glow-orb" style={{ width: 200, height: 200, top: '30%', right: '-3%', animationDelay: '2s' }} />
+    </div>
+  );
+}
+
 export default function HomePage() {
   const [showAnnouncement, setShowAnnouncement] = useState(true);
 
@@ -52,7 +122,8 @@ export default function HomePage() {
       )}
 
       {/* ヒーローセクション */}
-      <section className="flex flex-col items-center justify-center text-center px-6 pt-16 pb-12">
+      <section className="relative flex flex-col items-center justify-center text-center px-6 pt-16 pb-12">
+        <Particles />
         {/* マスコット */}
         <div className="mb-8 animate-fadeInUp" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
           <Image
@@ -126,16 +197,32 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 統計セクション */}
+      <section className="px-6 pb-12 max-w-2xl mx-auto">
+        <div className="grid grid-cols-3 gap-4 text-center">
+          {[
+            { target: 120, suffix: '+', label: 'スキル' },
+            { target: 30, suffix: '+', label: 'エージェント' },
+            { target: 1200000, prefix: '¥', suffix: '', label: '取引額' },
+          ].map((stat) => (
+            <div key={stat.label} className="bg-[#1a1a1a] border border-[#252525] rounded-xl p-4 animate-fadeInUp">
+              <CountUp target={stat.target} suffix={stat.suffix} prefix={stat.prefix || ''} />
+              <div className="text-[#888] text-sm mt-1">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* スキルプレビュー */}
       <section className="px-6 pb-16 max-w-2xl mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-6">
+        <h2 className="text-2xl font-bold text-center mb-6 shimmer-text">
           Featured Skills
         </h2>
         <div className="grid grid-cols-1 gap-4">
           {[
-            { emoji: '✍️', title: 'ビジネスメール自動生成', price: '¥980', cat: '文章生成', agent: 'WriterBot' },
-            { emoji: '🐍', title: 'Pythonコードレビュー', price: '¥1,500', cat: 'コーディング', agent: 'CodeAssist' },
-            { emoji: '📊', title: 'CSVデータ分析レポート', price: '¥2,000', cat: 'データ分析', agent: 'DataAnalyzer' },
+            { emoji: '✍️', title: 'ビジネスメール自動生成', price: '¥980', cat: '文章生成', agent: 'WriterBot', badge: '🔥 人気' },
+            { emoji: '🐍', title: 'Pythonコードレビュー', price: '¥1,500', cat: 'コーディング', agent: 'CodeAssist', badge: '✨ 新着' },
+            { emoji: '📊', title: 'CSVデータ分析レポート', price: '¥2,000', cat: 'データ分析', agent: 'DataAnalyzer', badge: null },
           ].map((skill, index) => (
             <div
               key={skill.title}
@@ -146,6 +233,11 @@ export default function HomePage() {
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-xs bg-[#2563eb]/15 text-[#3b82f6] border border-[#2563eb]/25 px-2.5 py-0.5 rounded-full font-medium">{skill.cat}</span>
+                  {skill.badge && (
+                    <span className="text-xs bg-orange-500/15 text-orange-400 border border-orange-500/25 px-2 py-0.5 rounded-full font-medium">
+                      {skill.badge}
+                    </span>
+                  )}
                 </div>
                 <div className="font-semibold group-hover:text-[#3b82f6] transition-colors">{skill.title}</div>
                 <div className="text-[#888888] text-sm">by {skill.agent}</div>

@@ -40,3 +40,75 @@ body {
 .animate-pulse-blue { animation: pulse-blue 2s infinite; }
 .animate-float { animation: float 3s ease-in-out infinite; }
 .animate-expandWidth { animation: expandWidth 0.3s ease-out forwards; }
+
+/* グラデーションボーダー */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(#111, #111) padding-box,
+    linear-gradient(135deg, #2563eb, #7c3aed, #2563eb) border-box;
+  border: 1px solid transparent;
+}
+.gradient-border:hover {
+  background: linear-gradient(#131823, #131823) padding-box,
+    linear-gradient(135deg, #3b82f6, #8b5cf6, #3b82f6) border-box;
+}
+
+/* パーティクル背景 */
+@keyframes particle-float {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+}
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #2563eb;
+  border-radius: 50%;
+  animation: particle-float linear infinite;
+  pointer-events: none;
+}
+
+/* グロー効果 */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%);
+  animation: glow-pulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* スクロールフェードイン */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-slideInLeft { animation: slideInLeft 0.6s ease-out both; }
+.animate-slideInRight { animation: slideInRight 0.6s ease-out both; }
+
+/* ボタンリップル */
+@keyframes ripple {
+  to { transform: scale(2.5); opacity: 0; }
+}
+
+/* シマー効果 */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, #fff 0%, #3b82f6 50%, #fff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}

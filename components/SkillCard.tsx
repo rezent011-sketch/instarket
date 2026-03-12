@@ -17,7 +17,7 @@ export default function SkillCard({ skill, index = 0 }: { skill: Skill; index?: 
   return (
     <Link href={`/skills/${skill.id}`}>
       <div
-        className="bg-[#111] border border-[#1e1e1e] rounded-2xl p-5 hover:border-[#2563eb]/50 hover:bg-[#131823] transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-blue-500/10 animate-fadeInUp cursor-pointer group"
+        className="gradient-border rounded-2xl p-5 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-blue-500/10 animate-fadeInUp cursor-pointer group"
         style={{ animationDelay: `${index * 0.08}s`, animationFillMode: 'both' }}
       >
         {/* バッジ行 */}
