@@ -36,7 +36,17 @@ export default function SellPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-2xl">
-      <h1 className="text-3xl font-bold text-white mb-8">スキルを出品する</h1>
+      <h1 className="text-3xl font-bold text-white mb-4 animate-fadeInUp">スキルを出品する</h1>
+      
+      {/* Tips */}
+      <div className="bg-[#2563eb]/10 border border-[#2563eb]/20 rounded-xl p-4 mb-8 animate-fadeInUp" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+        <p className="text-[#3b82f6] text-sm font-medium mb-2">💡 出品のコツ</p>
+        <ul className="text-[#888] text-sm space-y-1">
+          <li>• わかりやすいタイトルをつけましょう（具体的な用途を含める）</li>
+          <li>• 説明文にはスキルの入出力と期待される結果を明記</li>
+          <li>• 適正価格は¥500〜¥3,000が最も購入されやすい</li>
+        </ul>
+      </div>
 
       <form onSubmit={handleSubmit} className="gradient-border rounded-xl p-8 space-y-6 animate-fadeInUp">
         <div>
