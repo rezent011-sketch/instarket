@@ -1,62 +1,53 @@
 'use client';
-
 import Link from 'next/link';
-import { Skill } from '@/types';
 
-interface SkillCardProps {
-  skill: Skill;
+interface Skill {
+  id: number | string;
+  title: string;
+  description: string;
+  price: number;
+  category: string;
+  agent_name?: string;
+  rating?: number;
+  is_ai_generated?: boolean;
+  tags?: string[];
 }
 
-const categoryColors: Record<string, string> = {
-  '文章生成': 'bg-purple-900 text-purple-300',
-  '画像処理': 'bg-pink-900 text-pink-300',
-  'データ分析': 'bg-green-900 text-green-300',
-  'コーディング': 'bg-blue-900 text-blue-300',
-  '翻訳': 'bg-yellow-900 text-yellow-300',
-  'マーケティング': 'bg-orange-900 text-orange-300',
-  '教育': 'bg-teal-900 text-teal-300',
-  'ビジネス': 'bg-indigo-900 text-indigo-300',
-  'その他': 'bg-gray-800 text-gray-300',
-};
-
-export default function SkillCard({ skill }: SkillCardProps) {
-  const colorClass = categoryColors[skill.category] || 'bg-gray-800 text-gray-300';
-
+export default function SkillCard({ skill, index = 0 }: { skill: Skill; index?: number }) {
   return (
     <Link href={`/skills/${skill.id}`}>
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 hover:border-blue-600 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/20 cursor-pointer group">
-        {/* バッジ行: カテゴリ + AI生成バッジ */}
-        <div className="flex items-center gap-2 mb-3">
-          <span className={`inline-block px-2 py-1 rounded-md text-xs font-medium ${colorClass}`}>
+      <div
+        className="bg-[#111] border border-[#1e1e1e] rounded-2xl p-5 hover:border-[#2563eb]/50 hover:bg-[#131823] transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-blue-500/10 animate-fadeInUp cursor-pointer group"
+        style={{ animationDelay: `${index * 0.08}s`, animationFillMode: 'both' }}
+      >
+        {/* バッジ行 */}
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-xs bg-[#2563eb]/15 text-[#3b82f6] border border-[#2563eb]/25 px-2.5 py-0.5 rounded-full font-medium">
             {skill.category}
           </span>
           {skill.is_ai_generated && (
-            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium bg-gradient-to-r from-violet-900 to-blue-900 text-violet-300 border border-violet-700">
+            <span className="text-xs bg-purple-500/15 text-purple-400 border border-purple-500/25 px-2 py-0.5 rounded-full">
               🤖 AI生成
             </span>
           )}
         </div>
 
         {/* タイトル */}
-        <h3 className="text-white font-semibold text-lg mb-2 group-hover:text-blue-400 transition-colors line-clamp-2">
+        <h3 className="font-bold text-white text-base leading-snug mb-2 group-hover:text-[#3b82f6] transition-colors line-clamp-2">
           {skill.title}
         </h3>
 
         {/* 説明 */}
-        <p className="text-gray-400 text-sm mb-4 line-clamp-3">
+        <p className="text-[#666] text-sm leading-relaxed mb-4 line-clamp-2">
           {skill.description}
         </p>
 
         {/* フッター */}
-        <div className="flex items-center justify-between">
-          <span className="text-blue-400 font-bold text-xl">
-            ¥{skill.price.toLocaleString()}
+        <div className="flex items-center justify-between pt-3 border-t border-[#1e1e1e]">
+          <span className="text-[#888] text-xs">by {skill.agent_name || 'Unknown Agent'}</span>
+          <span className="text-[#2563eb] font-bold text-lg group-hover:text-[#3b82f6] group-hover:scale-110 transition-all">
+            ¥{skill.price?.toLocaleString()}
           </span>
-          {skill.agent_name && (
-            <span className="text-gray-500 text-xs">
-              by {skill.agent_name}
-            </span>
-          )}
         </div>
       </div>
     </Link>
