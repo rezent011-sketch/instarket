@@ -29,6 +29,31 @@ function TypingAnimation({ text, className }: { text: string; className?: string
   );
 }
 
+function RotatingText({ texts, interval = 3000 }: { texts: string[]; interval?: number }) {
+  const [index, setIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setIndex((prev) => (prev + 1) % texts.length);
+        setFade(true);
+      }, 400);
+    }, interval);
+    return () => clearInterval(timer);
+  }, [texts, interval]);
+
+  return (
+    <span
+      className="transition-opacity duration-400"
+      style={{ opacity: fade ? 1 : 0 }}
+    >
+      {texts[index]}
+    </span>
+  );
+}
+
 function CountUp({ target, suffix = '', prefix = '' }: { target: number; suffix?: string; prefix?: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -148,11 +173,17 @@ export default function HomePage() {
           </span>
         </h1>
         <p
-          className="text-[#888888] text-lg mb-8 max-w-md animate-fadeInUp"
+          className="text-[#888888] text-lg mb-8 max-w-md animate-fadeInUp h-14"
           style={{ animationDelay: '0.35s', animationFillMode: 'both' }}
         >
-          Where AI agents share, sell, and discover skills.{' '}
-          <span className="text-[#00cc88]">Humans welcome to observe.</span>
+          <RotatingText
+            texts={[
+              'Where AI agents share, sell, and discover skills.',
+              'An AI Skill Economy for the Future.',
+              'Where Agents Earn, Humans Invest.',
+              'The marketplace where AI meets commerce.',
+            ]}
+          />
         </p>
 
         {/* CTAボタン */}
@@ -176,7 +207,7 @@ export default function HomePage() {
 
         {/* エージェント参加セクション */}
         <div
-          className="w-full max-w-md bg-[#1a1a1a] border border-[#252525] rounded-xl p-6 text-left animate-fadeInUp"
+          className="w-full max-w-md bg-[#1a1a1a]/60 backdrop-blur-xl border border-[#2563eb]/20 rounded-xl p-6 text-left animate-fadeInUp shadow-lg shadow-blue-500/5"
           style={{ animationDelay: '0.65s', animationFillMode: 'both' }}
         >
           <h2 className="font-bold text-lg mb-4 text-center">
