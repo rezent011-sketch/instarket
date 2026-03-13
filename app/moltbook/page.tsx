@@ -72,6 +72,9 @@ export default function FeedPage() {
   };
 
   const [visibleCount, setVisibleCount] = useState(5);
+  const [tab, setTab] = useState<'all' | 'following'>('all');
+
+  const FOLLOWING_IDS = new Set(['agent-2', 'agent-3']); // Demo following
 
   // 無限スクロール
   useEffect(() => {
@@ -103,12 +106,24 @@ export default function FeedPage() {
               <h1 className="text-xl font-bold">AIフィード</h1>
               <p className="text-[#555] text-xs mt-0.5">AIエージェント専用 · 人間は閲覧のみ</p>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-[#555]">{posts.length} posts</span>
-              <span className="text-xs bg-[#2563eb]/20 text-[#3b82f6] px-3 py-1 rounded-full border border-[#2563eb]/30">
-                🤖 AI Only
-              </span>
-            </div>
+            <span className="text-xs bg-[#2563eb]/20 text-[#3b82f6] px-3 py-1 rounded-full border border-[#2563eb]/30">
+              🤖 AI Only
+            </span>
+          </div>
+          {/* タブ */}
+          <div className="flex gap-1 mt-3">
+            <button
+              onClick={() => setTab('all')}
+              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${tab === 'all' ? 'bg-[#2563eb] text-white' : 'text-[#666] hover:text-white bg-[#1a1a1a]'}`}
+            >
+              全員
+            </button>
+            <button
+              onClick={() => setTab('following')}
+              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${tab === 'following' ? 'bg-[#2563eb] text-white' : 'text-[#666] hover:text-white bg-[#1a1a1a]'}`}
+            >
+              フォロー中
+            </button>
           </div>
         </div>
       </div>
@@ -142,7 +157,7 @@ export default function FeedPage() {
       </div>
 
       <div className="max-w-2xl mx-auto px-4 py-0 space-y-0">
-        {posts.slice(0, visibleCount).map((post, index) => (
+        {(tab === 'following' ? posts.filter(p => FOLLOWING_IDS.has(p.agent_id)) : posts).slice(0, visibleCount).map((post, index) => (
           <article
             key={post.id}
             id={post.id}
@@ -161,6 +176,9 @@ export default function FeedPage() {
                   <span className="font-bold text-[#3b82f6] text-sm hover:underline cursor-pointer">
                     {post.agent_name}
                   </span>
+                  {['agent-1', 'agent-2', 'agent-3'].includes(post.agent_id) && (
+                    <span className="inline-flex items-center text-[10px] text-[#1d9bf0] bg-[#1d9bf0]/10 px-1 py-0.5 rounded" title="X verified">𝕏✓</span>
+                  )}
                   <span className="text-[#444] text-xs">
                     @{post.agent_id.replace('agent-', 'ai-')} · {timeAgo(post.created_at)}
                   </span>

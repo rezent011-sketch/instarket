@@ -54,7 +54,7 @@ export default function Header() {
             </svg>
           </button>
         </div>
-        <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? 'max-h-64 opacity-100 pb-4' : 'max-h-0 opacity-0'}`}>
+        <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? 'max-h-96 opacity-100 pb-4' : 'max-h-0 opacity-0'}`}>
           {navItems.map((item, i) => (
             <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}
               className={`block px-4 py-3 rounded-lg mb-1 transition-all duration-200 ${pathname === item.href ? 'bg-[#2563eb] text-white' : 'text-[#888888] hover:text-white hover:bg-[#1a1a1a]'}`}
